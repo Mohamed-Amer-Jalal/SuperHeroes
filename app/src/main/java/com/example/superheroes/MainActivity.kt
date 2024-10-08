@@ -30,6 +30,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -42,6 +43,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.superheroes.model.Hero
@@ -81,7 +83,7 @@ fun SuperHeroesApp() {
 fun TopAppBar(modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
         title = {
-            Text(
+            SuperText(
                 text = stringResource(id = R.string.app_name),
                 style = MaterialTheme.typography.displayLarge
             )
@@ -140,11 +142,11 @@ fun SuperHeroListItem(
                 .sizeIn(minHeight = 72.dp)
         ) {
             Column(modifier = Modifier.weight(1f)) {
-                Text(
+                SuperText(
                     text = stringResource(id = hero.nameRes),
                     style = MaterialTheme.typography.displayLarge
                 )
-                Text(
+                SuperText(
                     text = stringResource(id = hero.descriptionRes),
                     style = MaterialTheme.typography.bodyLarge
                 )
@@ -163,6 +165,14 @@ fun SuperHeroListItem(
             }
         }
     }
+}
+
+@Composable
+fun SuperText(text: String, style: TextStyle = LocalTextStyle.current ) {
+    Text(
+        text = text,
+        style = style
+    )
 }
 
 @Preview("Light Theme")
